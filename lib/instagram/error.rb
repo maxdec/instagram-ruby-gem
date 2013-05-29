@@ -1,6 +1,22 @@
 module Instagram
   # Custom error class for rescuing from all Instagram errors
-  class Error < StandardError; end
+  class Error < StandardError
+    attr_reader :code
+    attr_reader :message
+    attr_reader :type
+
+    def initialize(response)
+      body     = JSON.parse(response[:body], :symbolize_names => true)
+      @code    = body[:code]
+      @message = body[:error_message]
+      @type    = body[:error_type]
+    end
+
+    def message
+      "#{@type}: #{@message} (#{@code})"
+    end
+    alias :to_s :message
+  end
 
   # Raised when Instagram returns the HTTP status code 400
   class BadRequest < Error; end

@@ -8,13 +8,13 @@ module FaradayMiddleware
       @app.call(env).on_complete do |response|
         case response[:status].to_i
         when 400
-          raise Instagram::BadRequest, error_message_400(response)
+          raise Instagram::BadRequest.new(response), error_message_400(response)
         when 404
           raise Instagram::NotFound, error_message_400(response)
         when 500
           raise Instagram::InternalServerError, error_message_500(response, "Something is technically wrong.")
         when 503
-          raise Instagram::ServiceUnavailable, error_message_500(response, "Instagram is rate limiting your requests.")
+          raise Instagram::ServiceUnavailable.new(response), error_message_500(response, "Instagram is rate limiting your requests.")
         end
       end
     end
