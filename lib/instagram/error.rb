@@ -4,12 +4,14 @@ module Instagram
     attr_reader :code
     attr_reader :message
     attr_reader :type
+    attr_reader :response
 
     def initialize(response)
       body     = JSON.parse(response[:body], :symbolize_names => true)
-      @code    = body[:code]
-      @message = body[:error_message]
-      @type    = body[:error_type]
+      @code    = body[:code] || body[:meta][:code]
+      @message = body[:error_message] || body[:meta][:error_message]
+      @type    = body[:error_type] || body[:meta][:error_type]
+      @response = response[:body]
     end
 
     def message
