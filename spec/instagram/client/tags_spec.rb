@@ -48,6 +48,7 @@ describe Instagram::Client do
           media.should be_a Array
           media.first.user.username.should == "amandavan"
         end
+
       end
 
       describe ".tag_search" do

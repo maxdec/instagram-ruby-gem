@@ -10,9 +10,8 @@ module Instagram
       options = {
         :headers => {'Accept' => "application/#{format}; charset=utf-8", 'User-Agent' => user_agent},
         :proxy => proxy,
-        :ssl => {:verify => false},
         :url => endpoint,
-      }
+      }.merge(connection_options)
 
       Faraday::Connection.new(options) do |connection|
         connection.use FaradayMiddleware::InstagramOAuth2, client_id, access_token

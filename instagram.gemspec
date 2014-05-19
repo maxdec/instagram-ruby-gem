@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency('rspec', '~> 2.4')
   s.add_development_dependency('webmock', '~> 1.6')
   s.add_development_dependency('bluecloth', '~> 2.0.11')
-  s.add_runtime_dependency('faraday', ['>= 0.7', '< 0.9'])
-  s.add_runtime_dependency('faraday_middleware', '~> 0.8')
+  s.add_runtime_dependency('faraday', ['>= 0.7', '< 0.10'])
+  s.add_runtime_dependency('faraday_middleware', ['>= 0.8', '< 0.10'])
   s.add_runtime_dependency('multi_json', '>= 1.0.3', '~> 1.0')
   s.add_runtime_dependency('hashie',  '>= 0.4.0')
   s.authors = ["Shayne Sweeney"]
@@ -14,11 +14,23 @@ Gem::Specification.new do |s|
   s.post_install_message =<<eos
 ********************************************************************************
 
-  Follow @instagramapi on Twitter for announcements, updates, and news.
-  https://twitter.com/instagramapi
+Instagram REST and Search APIs
+------------------------------
+Our developer site documents all the Instagram REST and Search APIs.
+(http://instagram.com/developer)
 
-  Join the mailing list!
-  https://groups.google.com/group/instagram-ruby-gem
+Blog
+----------------------------
+The Developer Blog features news and important announcements about the Instagram Platform. 
+You will also find tutorials and best practices to help you build great platform integrations.
+Make sure to subscribe to the RSS feed so you don't miss out on new posts: 
+(http://developers.instagram.com).
+
+Community
+----------------------
+The Stack Overflow community is a great place to ask API related questions or if you need help with your code.
+Make sure to tag your questions with the Instagram tag to get fast answers from other fellow developers and members of the Instagram team.
+(http://stackoverflow.com/questions/tagged/instagram/)
 
 ********************************************************************************
 eos

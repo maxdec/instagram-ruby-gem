@@ -12,7 +12,7 @@ module Instagram
       # @format :json
       # @authenticated false
       # @rate_limited true
-      # @see TODO:docs url
+      # @see http://instagram.com/developer/endpoints/tags/#get_tags
       def tag(tag, *args)
         response = get("tags/#{tag}")
         response
@@ -21,20 +21,20 @@ module Instagram
       # Returns a list of recent media items for a given Instagram tag
       #
       # @overload tag_recent_media(tag, options={})
-      #   @param user [String] An Instagram tag name.
+      #   @param tag-name [String] An Instagram tag name.
       #   @param options [Hash] A customizable set of options.
       #   @option options [Integer] :max_id (nil) Returns results with an ID less than (that is, older than) or equal to the specified ID.
-      #   @option options [Integer] :count (nil) Limits the number of results returned per page.
+      #   @option options [Integer] :min_id (nil) Returns results with an ID greater than (that is, newer than) or equal to the specified ID.
       #   @return [Hashie::Mash]
       #   @example Return a list of the most recent media items tagged "cat"
       #     Instagram.tag_recent_media('cat')
-      # @see TODO:docs url
+      # @see http://instagram.com/developer/endpoints/tags/#get_tags_media_recent
       # @format :json
       # @authenticated false
       # @rate_limited true
       def tag_recent_media(id, *args)
         options = args.last.is_a?(Hash) ? args.pop : {}
-        response = get("tags/#{id}/media/recent", options)
+        response = get("tags/#{id}/media/recent", options, false, false)
         response
       end
 
@@ -47,7 +47,7 @@ module Instagram
       # @param options [Hash] A customizable set of options.
       # @option options [Integer] :count The number of media items to retrieve.
       # @return [Hashie::Mash]
-      # @see TODO:doc url
+      # @see http://instagram.com/developer/endpoints/tags/#get_tags_search
       # @example Return tags that start with "cat"
       #   Instagram.tag_search("cat")
       def tag_search(query, options={})

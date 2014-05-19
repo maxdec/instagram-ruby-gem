@@ -12,7 +12,7 @@ module Instagram
       # @format :json
       # @authenticated false
       # @rate_limited true
-      # @see TODO:docs url
+      # @see http://instagram.com/developer/endpoints/locations/#get_locations
       def location(id, *args)
         response = get("locations/#{id}")
         response
@@ -28,7 +28,7 @@ module Instagram
       #   @return [Hashie::Mash]
       #   @example Return a list of the most recent media items taken at the Instagram office
       #     Instagram.location_recent_media(514276)
-      # @see TODO:docs url
+      # @see http://instagram.com/developer/endpoints/locations/#get_locations_media_recent
       # @format :json
       # @authenticated false
       # @rate_limited true
@@ -50,7 +50,7 @@ module Instagram
       #     Instagram.location_search("3fd66200f964a520c5f11ee3") (Schiller's Liquor Bar, 131 Rivington St., NY, NY 10002)
       #   @example 2: Return locations around 37.7808851, -122.3948632 (164 S Park, SF, CA USA)
       #     Instagram.location_search("37.7808851", "-122.3948632")
-      # @see TODO:doc url
+      # @see http://instagram.com/developer/endpoints/locations/#get_locations_search
       # @format :json
       # @authenticated false
       # @rate_limited true
@@ -63,6 +63,9 @@ module Instagram
         when 2
           lat, lng = args
           response = get('locations/search', options.merge(:lat => lat, :lng => lng))
+        when 3
+          lat, lng, distance = args
+          response = get('locations/search', options.merge(:lat => lat, :lng => lng, :distance => distance))
         end
         response
       end
