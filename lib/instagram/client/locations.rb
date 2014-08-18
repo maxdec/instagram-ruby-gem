@@ -57,9 +57,8 @@ module Instagram
       def location_search(*args)
         options = args.last.is_a?(Hash) ? args.pop : {}
         case args.size
-        when 1
-          foursquare_v2_id = args.first
-          response = get('locations/search', options.merge(:foursquare_v2_id => foursquare_v2_id))
+        when 0
+          response = get('locations/search', options)
         when 2
           lat, lng = args
           response = get('locations/search', options.merge(:lat => lat, :lng => lng))
